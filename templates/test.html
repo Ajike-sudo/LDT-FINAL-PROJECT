@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Average Life Expectancy</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=15">
+  <link rel="stylesheet" href="{ {url_for('static', filename='CSS/style.CSS')}}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Life Expectancy Based on Country and Year</h2>
+    <form action="{{ url_for('predict')}}method="post">
+      <div class="form-group">
+          <label for="country">Choose a country:</label>
+          <select name="country" id="country">
+          <option value="Australia">Australia</option>
+          <option value="Brazil">Brazil</option>
+          <option value="Canada">Canada</option>
+          <option value="China">China</option>
+          <option value="France">France</option>
+          <option value="Germany">Germany</option>
+          <option value="India">India</option>
+          <option value="Italy">Italy</option>
+          <option value="Japan">Japan</option>
+          <option value="Mexico">Mexico</option>
+          <option value="Russia">Russia</option>
+          <option value="Spain">Spain</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="United States">United States</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="yr">Year:</label>
+      <select name="year">
+        {% for year in range(1800, 2017) %}
+        <option value="{{ year }}">{{ year }}</option>
+    {% endfor %}
+    </select>
+    </div>
+
+    <button type="predict" class="btn btn-default">Predict</button>
+</form>
+
+{{ prediction_text }}
+
+</div>
+
+
+</body>
+</html>
